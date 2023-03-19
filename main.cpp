@@ -1,3 +1,4 @@
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <stack>
@@ -117,11 +118,13 @@ int main() {
 					else if (event.key.code == sf::Keyboard::Up) {
 						if (fps_limit == 120) break;
 						fps_limit += 5;
+						std::cout << "Set fps limit to " << fps_limit << std::endl;
 						window.setFramerateLimit(fps_limit);
 					}
 					else if (event.key.code == sf::Keyboard::Down) {
 						if (fps_limit == 5) break;
 						fps_limit -= 5;
+						std::cout << "Set fps limit to " << fps_limit << std::endl;
 						window.setFramerateLimit(fps_limit);
 					}
 					else if (event.key.code == sf::Keyboard::A) {
@@ -131,6 +134,7 @@ int main() {
 					else if (event.key.code == sf::Keyboard::F) {
 						fps_limit = 30;
 						window.setFramerateLimit(fps_limit);
+						std::cout << "Set fps limit to 30" << std::endl;
 					} else if (event.key.code == sf::Keyboard::C) {
 						onlychanges = !onlychanges;
 						if (onlychanges && !skip) skip = true;
