@@ -63,7 +63,7 @@ void s_drawmap(std::vector<Cell>& map, sf::RenderWindow& window, std::stack<Cell
 	}
 }
 
-void updatemap(std::stack<CellChange>& stack, std::vector<Cell>& map) {
+void updatemap(std::stack<CellChange>& stack, std::vector<Cell>& map, bool changes_only = false) {
 	for (int y = 0; y < B_SIZE; y++) {
 		for (int x = 0; x < B_SIZE; x++) {
 			int n = count_neighbors(x, y, map);
@@ -71,7 +71,7 @@ void updatemap(std::stack<CellChange>& stack, std::vector<Cell>& map) {
 			int state = c.live;
 			if (c.live && (n < 2 || n > 3)) state = false;
 			else if (n == 3) state = true;
-			if (state != c.live || (state && c.live)) stack.push(std::make_pair(sf::Vector2f(x, y), state));
+			if (state != c.live || (state && c.live && !changes_only)) stack.push(std::make_pair(sf::Vector2f(x, y), state));
 		}
 	}
 }
@@ -85,6 +85,7 @@ int main() {
 	int fps_limit = 30;
 	bool updating = true;
 	bool skip = false;
+	bool onlychanges = false;
 
 	srand(time(NULL));
 
@@ -125,10 +126,14 @@ int main() {
 					}
 					else if (event.key.code == sf::Keyboard::A) {
 						skip = !skip;
+						if (skip && onlychanges) onlychanges = false;
 					}
 					else if (event.key.code == sf::Keyboard::F) {
 						fps_limit = 30;
 						window.setFramerateLimit(fps_limit);
+					} else if (event.key.code == sf::Keyboard::C) {
+						onlychanges = !onlychanges;
+						if (onlychanges && skip) skip = false;
 					}
 					break;
 				case sf::Event::MouseButtonPressed:
@@ -149,7 +154,7 @@ int main() {
 			r_drawmap(window, map);
 		}
 		else {
-			updatemap(changes, map);
+			updatemap(changes, map, onlychanges);
 			s_drawmap(map, window, changes, skip);
 		}
 		window.display();
