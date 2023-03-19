@@ -63,7 +63,7 @@ void s_drawmap(std::vector<Cell>& map, sf::RenderWindow& window, std::stack<Cell
 	}
 }
 
-void updatemap(sf::RenderWindow& window, std::stack<CellChange>& stack, std::vector<Cell>& map) {
+void updatemap(std::stack<CellChange>& stack, std::vector<Cell>& map) {
 	for (int y = 0; y < B_SIZE; y++) {
 		for (int x = 0; x < B_SIZE; x++) {
 			int n = count_neighbors(x, y, map);
@@ -149,7 +149,7 @@ int main() {
 			r_drawmap(window, map);
 		}
 		else {
-			updatemap(window, changes, map);
+			updatemap(changes, map);
 			s_drawmap(map, window, changes, skip);
 		}
 		window.display();
