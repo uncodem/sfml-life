@@ -128,6 +128,7 @@ int main() {
 					}
 					else if (event.key.code == sf::Keyboard::F) {
 						fps_limit = 30;
+						window.setFramerateLimit(fps_limit);
 					}
 					break;
 				case sf::Event::MouseButtonPressed:
