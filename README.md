@@ -21,4 +21,5 @@ Install either `cygwin` or `mingw` and then install sfml.
 | Down | Decrease framerate|
 | E | Randomize cells when simulation is stopped |
 | F | Reset framerate |
+| C | Toggle changes only view |
 | Left click | Toggles cells when simulation is stopped |
