@@ -1,7 +1,17 @@
 # sfml-life
 A simple simulation of Conway's game of life based on sfml
 
-### Binds
+## Building
+To build this project, the library `sfml` needs to be installed in on system.
+Building is as easy as running the build script, `build.sh`
+
+### Linux/Mac
+Install libsfml-dev through your package manager e.g `brew`, `yum`, `apt`
+
+### Windows
+Install either `cygwin` or `mingw` and then install sfml.
+
+## Binds
 | Key | What it does |
 | --- | -------------|
 | Space | Start/Stop the simulation |
