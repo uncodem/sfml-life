@@ -84,7 +84,7 @@ int main() {
 	
 	int fps_limit = 30;
 	bool updating = true;
-	bool skip = false;
+	bool skip = true;
 	bool onlychanges = false;
 
 	srand(time(NULL));
@@ -133,7 +133,7 @@ int main() {
 						window.setFramerateLimit(fps_limit);
 					} else if (event.key.code == sf::Keyboard::C) {
 						onlychanges = !onlychanges;
-						if (onlychanges && skip) skip = false;
+						if (onlychanges && !skip) skip = true;
 					}
 					break;
 				case sf::Event::MouseButtonPressed:
